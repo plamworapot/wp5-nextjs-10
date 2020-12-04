@@ -1,0 +1,17 @@
+services:
+    home:
+        build: ./home/
+        expose:
+            - 3000:3000
+        volumes:
+            - home-volume:/app
+
+    pdp:
+        build: ./pdp/
+        expose:
+            - 3001:3001
+        volumes:
+            - home-volume:/home_app
+
+volumes:
+     home-volume: 
