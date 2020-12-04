@@ -1,6 +1,12 @@
 import Head from "next/head";
+import dynamic from 'next/dynamic'
 
-const Header = (await import("home/Header")).default;
+// const Header = (await import("home/Header")).default;
+
+const Header = dynamic(
+  () => import('home/Header'),
+  { ssr: true }
+)
 
 const Home = () => (
   <div className="container">
