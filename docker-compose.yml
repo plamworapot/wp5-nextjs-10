@@ -1,15 +1,19 @@
 services:
     home:
         build: ./home/
-        expose:
+        ports:
             - 3000:3000
+        expose:
+            - 3000
         volumes:
             - home-volume:/app
 
     pdp:
         build: ./pdp/
-        expose:
+        ports:
             - 3001:3001
+        expose:
+            - 3001
         volumes:
             - home-volume:/home_app
 

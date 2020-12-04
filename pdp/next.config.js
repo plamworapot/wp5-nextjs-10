@@ -16,7 +16,7 @@ module.exports = {
         home: isServer
           ? path.resolve(
               __dirname,
-              "../home/.next/server/static/runtime/remoteEntry.js"
+              "../home_app/.next/server/static/runtime/remoteEntry.js"
             )
           : "home", // for client, treat it as a global
       },
