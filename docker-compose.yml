@@ -1,21 +1,33 @@
 services:
-    home:
-        build: ./home/
+    app:
+        build: ./app/
         ports:
             - 3000:3000
         expose:
             - 3000
         volumes:
-            - home-volume:/app
-
-    pdp:
-        build: ./pdp/
+            - header-volume:/app_header
+            - footer-volume:/app_footer
+        depends_on:
+            - app_header
+            - app_footer
+    app_header:
+        build: ./app_header/
         ports:
-            - 3001:3001
+            - 3002:3000
+        expose:
+            - 3002
+        volumes:
+            - header-volume:/app
+    app_footer:
+        build: ./app_footer/
+        ports:
+            - 3001:3000
         expose:
             - 3001
         volumes:
-            - home-volume:/home_app
+            - footer-volume:/app
 
 volumes:
-     home-volume: 
+    header-volume: 
+    footer-volume: 

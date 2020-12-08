@@ -8,12 +8,12 @@ module.exports = {
   webpack: (config, options) => {
     const { buildId, dev, isServer, defaultLoaders, webpack } = options;
     const mfConf = {
-      name: "home",
-      library: { type: config.output.libraryTarget, name: "home" },
+      name: "app_footer",
+      library: { type: config.output.libraryTarget, name: "app_footer" },
       filename: "static/runtime/remoteEntry.js",
       remotes: {},
       exposes: {
-        "./Header": "./components/Header",
+        "./Footer": "./components/Footer",
       },
       shared: [],
     };
@@ -24,7 +24,7 @@ module.exports = {
     config.plugins.push(new MergeRuntime());
 
     if (!isServer) {
-      config.output.publicPath = "http://localhost:3000/_next/";
+      config.output.publicPath = "http://localhost:3002/_next/";
     }
 
     return config;

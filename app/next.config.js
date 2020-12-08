@@ -8,17 +8,23 @@ module.exports = {
   webpack: (config, options) => {
     const { buildId, dev, isServer, defaultLoaders, webpack } = options;
     const mfConf = {
-      name: "pdp",
-      library: { type: config.output.libraryTarget, name: "pdp" },
+      name: "app",
+      library: { type: config.output.libraryTarget, name: "app" },
       filename: "static/runtime/remoteEntry.js",
       remotes: {
         // For SSR, resolve to disk path (or you can use code streaming if you have access)
-        home: isServer
+        app_header: isServer
           ? path.resolve(
               __dirname,
-              "../home_app/.next/server/static/runtime/remoteEntry.js"
+              "../app_header/.next/server/static/runtime/remoteEntry.js"
             )
-          : "home", // for client, treat it as a global
+          : "app_header", // for client, treat it as a global
+        app_footer: isServer
+          ? path.resolve(
+              __dirname,
+              "../app_footer/.next/server/static/runtime/remoteEntry.js"
+            )
+          : "app_footer", // for client, treat it as a global
       },
       exposes: {},
       shared: [],
@@ -28,7 +34,7 @@ module.exports = {
     withModuleFederation(config, options, mfConf);
 
     if (!isServer) {
-      config.output.publicPath = "http://localhost:3001/_next/";
+      config.output.publicPath = "http://localhost:3000/_next/";
     }
 
     config.plugins.push(new MergeRuntime());

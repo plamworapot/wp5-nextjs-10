@@ -11,7 +11,8 @@ class MyDocument extends Document {
     return (
       <Html>
         {patchSharing()}
-        <script src="http://localhost:3000/_next/static/remoteEntryMerged.js" />
+        <script src="http://localhost:3001/_next/static/remoteEntryMerged.js" />
+        <script src="http://localhost:3002/_next/static/remoteEntryMerged.js" />
         <Head />
         <body>
           <Main />
