@@ -7,7 +7,7 @@ const Header = () => (
       padding: "1em",
     }}
   >
-    <h1>Header 4</h1>
+    <h1>Header</h1>
   </div>
 );
 
