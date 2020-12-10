@@ -1,16 +1,24 @@
 import Head from "next/head";
-import dynamic from 'next/dynamic'
+let Header = null;
+try {
+  if(!process.browser){
+    try {
+      delete require.cache[require.resolve('app_header/Header')];
+    } catch (err) { console.log(err) }
+  }
 
-// const Header = (await import("app_header/Header")).default;
-
-const Header = dynamic(
-  () => import('app_header/Header'),
-  { ssr: true }
-)
-const Footer = dynamic(
-  () => import('app_footer/Footer'),
-  { ssr: true }
-)
+  Header = (await import('app_header/Header')).default
+    
+} catch (error) {
+  console.log(error)
+  Header = (await (import('../components/Header'))).default
+}
+let Footer = null;
+try {
+  Footer = (await import('app_footer/Footer')).default
+} catch (error) {
+  Footer = (await (import('../components/Header'))).default
+}
 
 
 const Home = () => (
@@ -59,8 +67,8 @@ const Home = () => (
           </p>
         </a>
       </div>
+      <Footer />
     </main>
-    <Footer />
     <style jsx global>{`
       html,
       body {
